@@ -5,7 +5,7 @@ import rospy
 from basics.srv import odd_even
 
 def jud_odd_even(request):
-    if request%2 == 0 :
+    if request.numb%2 == 0 :
         oddeven = 'even'
     else:
         oddeven = 'odd'

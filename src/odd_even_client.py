@@ -20,9 +20,9 @@ print type(numb_get)
 
 numb = int(numb_get)#sys.argc[1:] #''.join(sys.argv[1:])
 
-#judge_oddeven = jud_odd_even(numb)
+judge_oddeven = jud_odd_even(numb)
 
 print numb
 print type(numb)
 print '->'
-#print judge_oddeven
+print judge_oddeven
