@@ -6,8 +6,8 @@ import rospy
 import time
 import sys
 import actionlib
-#自分の作ったアクションファイル名がメッセージの型として自動生成される
-from basics.msg import mytimerAction, mytimerGoal, mytimerResult, mytimerFeedback
+# the name of action file becomes the name of msg type automatically.
+from basics.msg import mytimerGoal, mytimerResult, mytimerFeedback, mytimerAction
 
 def feedback_mytimer(feedback):
     print('[Feedback time] Time elapsed: %f'%(feedback.time_elapsed.to_sec()))
@@ -26,8 +26,8 @@ client.send_goal(goal, feedback_mytimer=feedback_mytimer)
 
 client.wait_for_result()
 
-print('[Result] State: %d'%(client.get_state())) #１〜４までの数字で状態を表示
-print('[Result] Status: %s'%(client.get_goal_status_text()))#サーバー側で設定した文字を表示
+print('[Result] State: %d'%(client.get_state())) # state is identified by No.１〜４
+print('[Result] Status: %s'%(client.get_goal_status_text()))# status is defined by server.
 print('[Result time] Time elapsed: %f'%(client.get_result().time_elapsed.to_sec()))
 sent_updates = client.get_result().updates_sent
 print('[Result updates] Updates sent: %d'%(sent_updates))

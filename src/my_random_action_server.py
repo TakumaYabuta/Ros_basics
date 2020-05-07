@@ -5,10 +5,10 @@ import rospy
 from random import random
 import time
 import actionlib
-#自分の作ったアクションファイル名がメッセージの型として自動生成される
-from basics.msg import mytimerAction, mytimerGoal, mytimerResult, mytimerFeedback
+# the name of action file becomes the name of msg type automatically.
+from basics.msg import mytimerGoal, mytimerResult, mytimerFeedback, mytimerAction
 
-def do_timer(goal)
+def do_timer(goal):
     start_time = time.time()
     update_count = 0
     even_count = 0
@@ -27,7 +27,7 @@ def do_timer(goal)
     while rand_number != goal.end_number:
             
         rand_number = random.randint(1,10)
-        if rand_number%2 == 0
+        if rand_number%2 == 0:
             even_count += 1
 
         if server.is_preempt_requested():
