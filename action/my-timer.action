@@ -18,5 +18,8 @@ uint32 updates_sent
 # タイマー開始からの経過時間
 duration time_elapsed
 
-#完了までの残り時間
-duration time_remaining
+#生成した数字
+unit32 recent_number
+
+#偶数の回数
+unit32 even_number
