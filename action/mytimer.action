@@ -13,6 +13,9 @@ duration time_elapsed
 # 更新を送った回数
 uint32 updates_sent
 
+#偶数の回数
+unit32 even_number
+
 ---
 # Part3 : フィードバック（実行中サーバーから定期的に送られる）
 # タイマー開始からの経過時間
