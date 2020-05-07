@@ -26,7 +26,7 @@ client.send_goal(goal, feedback_mytimer=feedback_mytimer)
 
 client.wait_for_result()
 
-print('[Result] State: %d'%(client.get_state())) # state is identified by No.１〜４
+print('[Result] State: %d'%(client.get_state())) # state is identified by No.1-4
 print('[Result] Status: %s'%(client.get_goal_status_text()))# status is defined by server.
 print('[Result time] Time elapsed: %f'%(client.get_result().time_elapsed.to_sec()))
 sent_updates = client.get_result().updates_sent
