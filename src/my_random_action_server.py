@@ -2,7 +2,7 @@
 # BEGIN ALL
 #! /usr/bin/env python
 import rospy
-from random import random
+from random import random, randint
 import time
 import actionlib
 # the name of action file becomes the name of msg type automatically.
@@ -26,7 +26,7 @@ def do_timer(goal):
         
     while rand_number != goal.end_number:
             
-        rand_number = random.randint(1,10)
+        rand_number = randint(1,10) #random.randint made error
         if rand_number%2 == 0:
             even_count += 1
 
