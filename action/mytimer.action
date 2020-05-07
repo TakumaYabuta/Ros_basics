@@ -3,7 +3,7 @@
 
 # Part1 : ゴールとする数字（クライアントが送る）
 # ランダムで得る目標数字
-unit32 end_number
+uint32 end_number
 
 ---
 # Part2 : リザルト（完了後にサーバーに送る）
@@ -14,7 +14,7 @@ duration time_elapsed
 uint32 updates_sent
 
 #偶数の回数
-unit32 even_number
+uint32 even_number
 
 ---
 # Part3 : フィードバック（実行中サーバーから定期的に送られる）
@@ -22,7 +22,7 @@ unit32 even_number
 duration time_elapsed
 
 #生成した数字
-unit32 recent_number
+uint32 recent_number
 
 #偶数の回数
-unit32 even_number
+uint32 even_number
