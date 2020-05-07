@@ -22,7 +22,7 @@ goal = mytimerGoal()
 numb_get = sys.argv[1:]
 goal.end_number = int(''.join(numb_get))
 
-client.send_goal(goal, feedback_mytimer=feedback_mytimer)
+client.send_goal(goal, feedback_cb=feedback_mytimer) # feedback_cb is defined by library
 
 client.wait_for_result()
 
