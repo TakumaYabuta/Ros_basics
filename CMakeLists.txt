@@ -72,7 +72,7 @@ find_package(catkin REQUIRED COMPONENTS
 #   Action2.action
    DIRECTORY action
    FILES Timer.action
-   FILES my-timer.action #これの名前をもらったメッセージ型が新しく自動生成される
+   FILES mytimer.action #これの名前をもらったメッセージ型が新しく自動生成される
  )
 
 ## Generate added messages and services with any dependencies listed here
