@@ -1,0 +1,22 @@
+# アクション定義ファイル
+# ３つの部分（ゴール、リザルト、フィードバック）から構成
+
+# Part1 : ゴールとする数字（クライアントが送る）
+# ランダムで得る目標数字
+unit32 end_number
+
+---
+# Part2 : リザルト（完了後にサーバーに送る）
+# 実際に待った時間（経過時間）
+duration time_elapsed
+
+# 更新を送った回数
+uint32 updates_sent
+
+---
+# Part3 : フィードバック（実行中サーバーから定期的に送られる）
+# タイマー開始からの経過時間
+duration time_elapsed
+
+#完了までの残り時間
+duration time_remaining
