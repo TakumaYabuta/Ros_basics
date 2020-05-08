@@ -15,12 +15,14 @@ def feedback_mytimer(feedback):
     print('[Feedback evenNo.] Even number appearance: %d'%(feedback.even_number))
 
 rospy.init_node('my_timer_action_client')
-client = actionlib.SimpleActionClient('timer',mytimerAction)
+client = actionlib.SimpleActionClient('my_action',mytimerAction)
 client.wait_for_server()
 
 goal = mytimerGoal()
 numb_get = sys.argv[1:]
 goal.end_number = int(''.join(numb_get))
+print('Goal Number is %d'%goal.end_number)
+print goal
 
 client.send_goal(goal, feedback_cb=feedback_mytimer) # feedback_cb is defined by library
 
@@ -31,7 +33,7 @@ print('[Result] Status: %s'%(client.get_goal_status_text()))# status is defined 
 print('[Result time] Time elapsed: %f'%(client.get_result().time_elapsed.to_sec()))
 sent_updates = client.get_result().updates_sent
 print('[Result updates] Updates sent: %d'%(sent_updates))
-number_even = client.get_result.even_number
+number_even = client.get_result().even_number
 print('[Result evenNo.] Even number appearance: %d'%(number_even))
 
 if sent_updates == 0:
