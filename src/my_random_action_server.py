@@ -9,6 +9,7 @@ import actionlib
 from basics.msg import mytimerGoal, mytimerResult, mytimerFeedback, mytimerAction
 
 def do_timer(goal):
+    print('do_timer starts')
     start_time = time.time()
     update_count = 0
     even_count = 0
@@ -16,28 +17,45 @@ def do_timer(goal):
     rand_number = 0
 
     if goal.end_number > 10:
-        if goal.end_number < 1:
-            result = mytimerResult()
-            result.time_elapsed = rospy.Duration.from_sec(time.time() - start_time)
-            result.updates_sent = update_count
-            result.even_number = even_count
-            server.set_aborted(result,"Action aborted due to too small or large number")
-            return
-        
+        print('action aborted')
+        result = mytimerResult()
+        result.time_elapsed = rospy.Duration.from_sec(time.time() - start_time)
+        result.updates_sent = update_count
+        result.even_number = even_count
+        server.set_aborted(result,"Action aborted due to too large number")
+        return
+    
+    if goal.end_number < 1:
+        print('action aborted')
+        result = mytimerResult()
+        result.time_elapsed = rospy.Duration.from_sec(time.time() - start_time)
+        result.updates_sent = update_count
+        result.even_number = even_count
+        server.set_aborted(result,"Action aborted due to too small number")
+        return        
+    
+    print('action continues')
+
     while rand_number != goal.end_number:
             
         rand_number = randint(1,10) #random.randint made error
+        print('random number: %d'%rand_number)
+
         if rand_number%2 == 0:
             even_count += 1
+            print('even_count: %d'%even_count)
 
+        print('before preempt')
         if server.is_preempt_requested():
+            print('action preempt')
             result = mytimerResult()
             result.time_elapsed = rospy.Duration.from_sec(time.time() - start_time)
             result.updates_sent = update_count
             result.even_number = even_count
             server.set_preempted(result, "Action preempted")
-        return
+            return
 
+        print('feedback sent')
         feedback = mytimerFeedback()
         feedback.time_elapsed = rospy.Duration.from_sec(time.time() - start_time)
         feedback.recent_number = rand_number
@@ -48,6 +66,7 @@ def do_timer(goal):
 
         time.sleep(1.0)
 
+    print('result sent')
     result = mytimerResult()
     result.time_elapsed = rospy.Duration.from_sec(time.time() - start_time)
     result.updates_sent = update_count
@@ -55,6 +74,6 @@ def do_timer(goal):
     server.set_succeeded(result,"Action completed successfully")
 
 rospy.init_node('my_timer_action_server')
-server = actionlib.SimpleActionServer('timer',mytimerAction,do_timer,False)
+server = actionlib.SimpleActionServer('my_action',mytimerAction,do_timer,False)
 server.start()
 rospy.spin()
